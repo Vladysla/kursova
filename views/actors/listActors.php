@@ -136,6 +136,13 @@
                                 <option value="<?=$genre['id']?>"><?=$genre['name']?></option>
                             <? endforeach;?>
                         </select>
+                        <!-- Select with floating label -->
+                        <label for="impresario">Выберите импресарио</label>
+                        <select name="impresario[]" multiple="" id="impresario">
+                            <? foreach ($impresarioList as $impresario): ?>
+                                <option value="<?=$impresario['id']?>"><?=$impresario['PIB']?></option>
+                            <? endforeach;?>
+                        </select>
                         <br><br>
                         Отправить этот файл:
                         <input name="actor_image" type="file" />

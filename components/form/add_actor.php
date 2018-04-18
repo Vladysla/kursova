@@ -14,17 +14,26 @@ if ($_POST['submit']){
     $date = $_POST['date'];
     $grade = $_POST['grade'];
     $ganers_post = $_POST['ganers'];
+    $impresario_post = $_POST['impresario'];
     $default_img = 'no-avatar.png';
     $image_title = str_replace(' ', '_', $_FILES['actor_image']['name']);
     $uploaddir = '../../template/media/images/actors/';
     $img = $uploaddir . $image_title;
     if (move_uploaded_file($_FILES['actor_image']['tmp_name'], $img)) {
-        Actors::setNewActor($first_name, $last_name, $patronymic, '2', $date, $ganers_post, $grade, $image_title);
+        Actors::setNewActor($first_name, $last_name, $patronymic, $impresario_post, $date, $ganers_post, $grade, $image_title);
         $host  = $_SERVER['HTTP_HOST'];
         header("Location: http://$host/actors");
     } else {
-        Actors::setNewActor($first_name, $last_name, $patronymic, '2', $date, $ganers_post, $grade, $default_img);
+        Actors::setNewActor($first_name, $last_name, $patronymic, $impresario_post, $date, $ganers_post, $grade, $default_img);
         $host  = $_SERVER['HTTP_HOST'];
-        header("Location: http://$host/actors");
+        var_dump($first_name);
+        var_dump($last_name);
+        var_dump($patronymic);
+        var_dump($impresario_post);
+        var_dump($date);
+        var_dump($ganers_post);
+        var_dump($grade);
+        var_dump($default_img);
+        //header("Location: http://$host/actors");
     }
 }

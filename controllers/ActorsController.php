@@ -25,6 +25,7 @@ class ActorsController
         $title = "Список актеров";
         $actorsList = Actors::getListActors();
         $ganersList = Actors::getListGenres();
+        $impresarioList = Actors::getListImpresario();
         require_once(ROOT . '/views/actors/listActors.php');
     }
 
