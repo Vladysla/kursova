@@ -39,6 +39,7 @@ $(document).ready(function () {
                     $('.mdl-spinner').removeClass('is-active');
                 },
                 success: function (data) {
+                    console.log(data);
                     $('.row.actors-list-impresario').append(data);
                 }
             });

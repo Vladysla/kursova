@@ -2,7 +2,7 @@
 
 require_once "../Db.php";
 require_once "../../models/Actors.php";
-$listActorsForImpresario = Actors::getListImpresario($_POST['searchImpresario']);
+$listActorsForImpresario = Actors::getListForImpresario($_POST['searchImpresario']);
 $output = '';
 
 if (!empty($_POST['searchImpresario'])){

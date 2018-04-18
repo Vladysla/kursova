@@ -121,9 +121,9 @@
             <!----- Dialog ---->
             <dialog class="mdl-dialog">
                 <form enctype="multipart/form-data" action="/components/form/add_actor.php" method="post">
-                <h4 class="mdl-dialog__title">Добавление актера</h4>
-                <div class="mdl-dialog__content">
-                    <!-- Numeric Textfield with Floating Label -->
+                    <h4 class="mdl-dialog__title">Добавление актера</h4>
+                    <div class="mdl-dialog__content">
+                        <!-- Numeric Textfield with Floating Label -->
                         <div id="field-name" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input name="first_name" class="mdl-textfield__input" type="text" pattern="[а-яА-Я,і]+" id="name">
                             <label class="mdl-textfield__label" for="name">Имя</label>
@@ -164,14 +164,14 @@
                         <br><br>
                         Отправить этот файл:
                         <input name="actor_image" type="file" />
-                </div>
-                <div class="mdl-dialog__actions">
-                    <!-- Raised button with ripple -->
-                    <button type="button" id="btn-not-add-actor"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect close">
-                        Отменить
-                    </button>
-                    <input value="Добавить" type="submit" name="submit" id="btn-add-actor"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                </div>
+                    </div>
+                    <div class="mdl-dialog__actions">
+                        <!-- Raised button with ripple -->
+                        <button type="button" id="btn-not-add-actor"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect close">
+                            Отменить
+                        </button>
+                        <input value="Добавить" type="submit" name="submit" id="btn-add-actor"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    </div>
                 </form>
             </dialog>
         </div>
