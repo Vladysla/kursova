@@ -26,14 +26,6 @@ if ($_POST['submit']){
     } else {
         Actors::setNewActor($first_name, $last_name, $patronymic, $impresario_post, $date, $ganers_post, $grade, $default_img);
         $host  = $_SERVER['HTTP_HOST'];
-        var_dump($first_name);
-        var_dump($last_name);
-        var_dump($patronymic);
-        var_dump($impresario_post);
-        var_dump($date);
-        var_dump($ganers_post);
-        var_dump($grade);
-        var_dump($default_img);
-        //header("Location: http://$host/actors");
+        header("Location: http://$host/actors");
     }
 }

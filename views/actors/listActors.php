@@ -94,10 +94,28 @@
                     <div class="row actors-list"></div>
                 </div>
                 <div class="mdl-tabs__panel" id="list-impresario-panel">
-                    <ul>
-                        <li>Viserys</li>
-                        <li>Daenerys</li>
-                    </ul>
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-10">
+                            <!-- Select with fixed height -->
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height" style="margin-left: 25%;">
+                                <input type="text" value="" class="mdl-textfield__input" id="result_search" readonly>
+                                <input type="hidden" value="" name="result_search" id="inp-hidden-impresario">
+                                <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                <label for="result_search" class="mdl-textfield__label">Импрессарио</label>
+                                <ul for="sample5" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                    <? foreach ($impresarioList as $impresario): ?>
+                                        <li class="mdl-menu__item" data-val="<?=$impresario['id']?>"><?=$impresario['PIB']?></li>
+                                    <? endforeach;?>
+                                </ul>
+                            </div>
+                            <!-- Raised button with ripple -->
+                            <button id="btn-serch-val-impresario" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-left: 3%;">
+                                Найти
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mdl-spinner mdl-js-spinner"></div>
+                    <div class="row actors-list-impresario"></div>
                 </div>
             </div>
             <!----- Dialog ---->

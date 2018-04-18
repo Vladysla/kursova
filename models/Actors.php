@@ -24,6 +24,24 @@ class Actors
             return $actorsListForGaners;
         }
     }
+
+    public static function getListForImpresario($impresario_id){
+        $impresario_id = intval($impresario_id);
+        if($impresario_id){
+            $actorsListForImpresario = [];
+            $db = Db::getConnection();
+            $query = $db->query("SELECT actors.* FROM actors LEFT OUTER JOIN actor_impresario ON actors.id = 
+            actor_impresario.actor_id WHERE actor_impresario.impresario_id = $impresario_id");
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $i = 0;
+            while ($row = $query->fetch()) {
+                $actorsListForImpresario[$i] = $row;
+                $i++;
+            }
+            return $actorsListForImpresario;
+        }
+    }
+
     public static function getListActors(){
         $actorsList = [];
         $db = Db::getConnection();

@@ -23,6 +23,30 @@ $(document).ready(function () {
         }
     });
 
+    $('#btn-serch-val-impresario').click(function () {
+        var text = $('#inp-hidden-impresario').val();
+        if(text !== ''){
+            $.ajax({
+                url: "../../components/ajax/impresario_pick.php",
+                method: "post",
+                data: {searchImpresario:text},
+                dataType: "text",
+                beforeSend: function() {
+                    $('.actors-list-impresario').html('');
+                    $('.mdl-spinner').addClass('is-active');
+                },
+                complete: function() {
+                    $('.mdl-spinner').removeClass('is-active');
+                },
+                success: function (data) {
+                    $('.row.actors-list-impresario').append(data);
+                }
+            });
+        }else {
+            $(".row.actors-list-impresario").html('<h2>Актеров нету!</h2>');
+        }
+    });
+
     $('.actors-list').on('click','button',function () {
         $(this).siblings().toggleClass('is-visible');
     });
