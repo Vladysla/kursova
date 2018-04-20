@@ -28,5 +28,12 @@ class ActorsController
         $impresarioList = Actors::getListImpresario();
         require_once(ROOT . '/views/actors/listActors.php');
     }
+    public function actionUpdateActor($actor_id){
+        $title = "Редактирование актера";
+        $ganersList = Actors::getListGenres();
+        $impresarioList = Actors::getListImpresario();
+        $actor = Actors::getActor($actor_id);
+        require_once(ROOT . '/views/actors/updateActor.php');
+    }
 
 }

@@ -33,7 +33,8 @@ if (!empty($_POST['search'])){
                     <span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 92.5097px; height: 92.5097px; transform: translate(-50%, -50%) translate(14px, 12px);"></span></span></button>
     
                     <div class="mdl-menu__container is-upgraded" style="right: 0px; bottom: 36px; width: 174.141px; height: 112px;"><div class="mdl-menu__outline mdl-menu--top-right" style="width: 174.141px; height: 112px;"></div><ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events" data-mdl-for="demo-menu" data-upgraded=",MaterialMenu,MaterialRipple" style="clip: rect(0px, 174.141px, 112px, 0px);">
-                        <li id-actor="'.$list['id'].'" class="mdl-menu__item mdl-js-ripple-effect edit-actor" tabindex="-1" data-upgraded=",MaterialRipple" style="transition-delay: 0.12s;">Редактировать даные<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span></li>
+                        <li id-actor="'.$list['id'].'" class="mdl-menu__item mdl-js-ripple-effect edit-actor" tabindex="-1" data-upgraded=",MaterialRipple" style="transition-delay: 0.12s;"><a
+                                                            href="/actors/update/'.$list['id'].'">Редактировать даные</a><span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span></li>
                         <li id-actor="'.$list['id'].'" class="mdl-menu__item mdl-js-ripple-effect delete-actor" tabindex="-1" data-upgraded=",MaterialRipple" style="transition-delay: 0.0171429s;">Удалить из списка<span class="mdl-menu__item-ripple-container"><span class="mdl-ripple"></span></span></li>
                     </ul></div>
                 </div>

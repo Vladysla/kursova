@@ -73,6 +73,17 @@ class Actors
         return $impresarioList;
     }
 
+    public static function getActor($actor_id)
+    {
+        $actor_id = intval($actor_id);
+        $db = Db::getConnection();
+        $query = $db->prepare("SELECT * FROM actors WHERE id = :actor_id");
+        $query->bindParam(":actor_id", $actor_id, PDO::PARAM_INT);
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute();
+        return $query->fetch();
+    }
+
     public static function setNewActor($firstName, $lastName, $patronymic, $impresarioList, $birth_date, $genreList, $grade, $image_title){
         $db = Db::getConnection();
         $query = $db->prepare("INSERT INTO actors (first_name, last_name, patronomic, birth_date, grade, image_title) VALUES (:firstName, :lastName, :patronymic, :birth_date, :grade, :image_title)");

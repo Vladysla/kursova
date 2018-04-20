@@ -53,21 +53,30 @@ $(document).ready(function () {
     });
     // Dialog
     var dialog = document.querySelector('dialog');
-    var showDialogButton = document.querySelector('#btn-add-some');
-    if (! dialog.showModal) {
-        dialogPolyfill.registerDialog(dialog);
+    if(dialog !== null){
+        var showDialogButton = document.querySelector('#btn-add-some');
+        if (! dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+        }
+        showDialogButton.addEventListener('click', function() {
+            dialog.showModal();
+        });
+        dialog.querySelector('.close').addEventListener('click', function() {
+            dialog.close();
+        });
     }
-    showDialogButton.addEventListener('click', function() {
-        dialog.showModal();
-    });
-    dialog.querySelector('.close').addEventListener('click', function() {
-        dialog.close();
-    });
-    $('select:not(.normal)').each(function () {
+    $('#ganers:not(.normal)').each(function () {
         $(this).select2({
             dropdownParent: $(this).parent()
         });
     });
+    $('#impresario:not(.normal)').each(function () {
+        $(this).select2({
+            dropdownParent: $(this).parent()
+        });
+    });
+    $("#ganers-update").select2();
+    $("#impresario-update").select2();
     //Delete actor
     $(".act-list").on('click', '.delete-actor', function () {
         var $id = $(this).attr('id-actor');

@@ -105,7 +105,11 @@ a:focus{
 }
 #field-grade{
     margin-bottom: 15px;
+	width: 88%;
 }
 #field-grade > textarea{
     height: 60px;
+}
+.file-upload{
+	margin-top: 20px;
 }

@@ -59,7 +59,8 @@
 
                                             <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
                                                 data-mdl-for="demo-menu-top-right <?=$list['id']?>">
-                                                <li id-actor="<?=$list['id']?>" class="mdl-menu__item edit-actor">Редактировать даные</li>
+                                                <li id-actor="<?=$list['id']?>" class="mdl-menu__item edit-actor"><a
+                                                            href="/actors/update/<?=$list['id']?>">Редактировать даные</a></li>
                                                 <li id-actor="<?=$list['id']?>" class="mdl-menu__item delete-actor">Удалить из списка</li>
                                             </ul>
                                         </div>
