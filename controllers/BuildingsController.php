@@ -9,7 +9,8 @@
 class BuildingsController
 {
     public function actionListBuildings(){
-
+        $title = "Культурные сооружения";
+        require_once(ROOT . '/views/buildings/index.php');
     }
 
 }

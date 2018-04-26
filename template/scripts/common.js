@@ -51,9 +51,12 @@ $(document).ready(function () {
     $('.actors-list').on('click','button',function () {
         $(this).siblings().toggleClass('is-visible');
     });
+    $('.actors-list-impresario').on('click','button',function () {
+        $(this).siblings().toggleClass('is-visible');
+    });
     // Dialog
     var dialog = document.querySelector('dialog');
-    if(dialog !== null){
+    if(dialog){
         var showDialogButton = document.querySelector('#btn-add-some');
         if (! dialog.showModal) {
             dialogPolyfill.registerDialog(dialog);

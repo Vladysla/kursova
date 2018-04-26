@@ -17,7 +17,7 @@ if (!empty($_POST['search'])){
     <div class="col-lg-4 col-md-4 col-sm-5">
         <div class="demo-card-square mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title mdl-card--expand" style="background: url(../template/media/images/actors/'.$list['image_title'].') bottom right 15% no-repeat #f9f9f9;">
-                <h2 class="mdl-card__title-text">'.$list['first_name'].' '.$list['last_name'].'</h2>
+                <h2 class="mdl-card__title-text names">'.$list['first_name'].' '.$list['last_name'].'</h2>
             </div>
             <div class="mdl-card__supporting-text">
                 '.$list['grade'].'

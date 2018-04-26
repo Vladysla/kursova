@@ -52,7 +52,7 @@
             <nav class="mdl-navigation">
                 <?
                 foreach ($main_menu as $title_menu => $url_menu){
-                    $active_link = strpos("%{$_SERVER['REQUEST_URI']}%", $url_menu) !== false ? 'menu-active' : '';
+                    $active_link = preg_match("@^$url_menu$@", $_SERVER['REQUEST_URI']) ? 'menu-active' : '';
                     echo "<a class='mdl-navigation__link {$active_link}' href='{$url_menu}'>{$title_menu}</a>";
                 }
                 ?>
@@ -64,7 +64,7 @@
         <nav class="mdl-navigation">
             <?
             foreach ($main_menu as $title_menu => $url_menu){
-                $active_link = strpos("%{$_SERVER['REQUEST_URI']}%", $url_menu) !== false ? 'menu-active' : '';
+                $active_link = preg_match("@^$url_menu$@", $_SERVER['REQUEST_URI']) ? 'menu-active' : '';
                 echo "<a class='mdl-navigation__link menu {$active_link}' href='{$url_menu}'>{$title_menu}</a>";
             }
             ?>

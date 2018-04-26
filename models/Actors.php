@@ -145,7 +145,7 @@ class Actors
 
     public static function updateActor($actor_id, $firstName, $lastName, $patronymic, $impresarioList, $birth_date, $genreList, $grade, $image_title){
         $db = Db::getConnection();
-        $query = $db->prepare("UPDATE  actors  SET  first_name = :firstName, last_name =:lastName, patronomic =:patronymic, grade =:grade, birth_date =:birth_date, image_title =:image_title, WHERE id = :actor_id");
+        $query = $db->prepare("UPDATE  actors  SET  first_name = :firstName, last_name =:lastName, patronomic =:patronymic, grade =:grade, birth_date =:birth_date, image_title =:image_title WHERE id = :actor_id");
         $query->bindParam(':firstName', $firstName, PDO::PARAM_STR);
         $query->bindParam(':lastName', $lastName, PDO::PARAM_STR);
         $query->bindParam(':patronymic', $patronymic, PDO::PARAM_STR);
@@ -154,16 +154,18 @@ class Actors
         $query->bindParam(':image_title', $image_title, PDO::PARAM_STR);
         $query->bindParam(':actor_id', $actor_id, PDO::PARAM_INT);
         $query->execute();
-        $last_id = $db->lastInsertId();
+        $query_delete = $db->prepare("DELETE FROM actor_ganer WHERE actor_id = :actor_id; DELETE FROM actor_impresario WHERE actor_id = :actor_id");
+        $query_delete->bindParam(":actor_id", $actor_id, PDO::PARAM_INT);
+        $query_delete->execute();
         foreach ($genreList as $ganre){
             $query_relation = $db->prepare("INSERT INTO actor_ganer (actor_id, ganer_id) VALUES (:actor_id, :ganer_id)");
-            $query_relation->bindParam(':actor_id', $last_id, PDO::PARAM_INT);
+            $query_relation->bindParam(':actor_id', $actor_id, PDO::PARAM_INT);
             $query_relation->bindParam(':ganer_id', $ganre, PDO::PARAM_INT);
             $query_relation->execute();
         }
         foreach ($impresarioList as $impresario){
             $query_relation_impres = $db->prepare("INSERT INTO actor_impresario (actor_id, impresario_id) VALUES (:actor_id, :impresario_id)");
-            $query_relation_impres->bindParam(':actor_id', $last_id, PDO::PARAM_INT);
+            $query_relation_impres->bindParam(':actor_id', $actor_id, PDO::PARAM_INT);
             $query_relation_impres->bindParam(':impresario_id', $impresario, PDO::PARAM_INT);
             $query_relation_impres->execute();
         }

@@ -59,7 +59,7 @@ a:focus{
 .mdl-card__title-text{
 	width: 100%;
 	height: 30px;
-	background-color: rgba(255,255,255, 0.08) !important;
+	background-color: rgba(0,0,0, 0.3) !important;
 }
 .mdl-tabs__tab:focus{
 	text-decoration: none;
@@ -112,4 +112,7 @@ a:focus{
 }
 .file-upload{
 	margin-top: 20px;
+}
+.names{
+	color: blanchedalmond;
 }

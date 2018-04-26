@@ -41,7 +41,7 @@
                                 <div class="demo-card-square mdl-card mdl-shadow--2dp">
                                     <div class="mdl-card__title mdl-card--expand" style="background:
                                             url('../template/media/images/actors/<?=$list['image_title']?>') bottom right 15% no-repeat #f9f9f9;">
-                                        <h2 class="mdl-card__title-text"><?=$list['first_name'] . " " . $list['last_name']?></h2>
+                                        <h2 class="mdl-card__title-text names"><?=$list['first_name'] . " " . $list['last_name']?></h2>
                                     </div>
                                     <div class="mdl-card__supporting-text">
                                         <?=$list['grade']?>
@@ -120,7 +120,7 @@
                 </div>
             </div>
             <!----- Dialog ---->
-            <dialog class="mdl-dialog">
+            <dialog id="dialog-add" class="mdl-dialog">
                 <form enctype="multipart/form-data" action="/components/form/add_actor.php" method="post">
                     <h4 class="mdl-dialog__title">Добавление актера</h4>
                     <div class="mdl-dialog__content">

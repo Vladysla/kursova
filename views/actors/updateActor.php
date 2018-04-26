@@ -1,9 +1,8 @@
-<? require_once ROOT ."/views/layouts/header.php";
-$selectedImpresario = '';
-$selectedGaners = '';
-?>
+<? require_once ROOT ."/views/layouts/header.php"; ?>
+    <main class="mdl-layout__content">
+    <div class="page-content">
 <div class="container">
-    <form enctype="multipart/form-data" action="/components/form/add_actor.php" method="post">
+    <form enctype="multipart/form-data" action="/components/form/update_actor.php" method="post">
         <h4 class="mdl-dialog__title">Редактирование актера</h4>
         <div class="mdl-dialog__content">
             <div class="row">
@@ -44,6 +43,7 @@ $selectedGaners = '';
                 </div>
                 <div class="col-5">
                     <label for="ganers">Выберите жанр</label>
+                    <?$selectedImpresario = ''; $selectedGaners = '';?>
                     <select name="ganers[]" multiple="" id="ganers-update">
                         <? foreach ($ganersList as $genre):?>
                             <? foreach ($ganersListForActor as $ganerActor):?>
@@ -75,7 +75,9 @@ $selectedGaners = '';
                 </div>
                 <div class="col-8 file-upload">
                     <label for="form-file">Отправить этот файл:</label>
-                    <input value="<?=$actor['image_title']?>" name="actor_image" type="file" id="form-file"/>
+                    <input type="hidden" name="actor_id" value="<?=$actor['id']?>">
+                    <input type="hidden" name="actor_default_image" value="<?=$actor['image_title']?>">
+                    <input name="actor_image" type="file" id="form-file"/>
                 </div>
             </div>
             <div class="mdl-dialog__actions">
@@ -88,4 +90,6 @@ $selectedGaners = '';
             </div>
     </form>
 </div>
+    </div>
+    </main>
 <? require_once ROOT ."/views/layouts/footer.php"?>
