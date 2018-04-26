@@ -1,5 +1,6 @@
 <? require_once ROOT ."/views/layouts/header.php";
-$selected = '';
+$selectedImpresario = '';
+$selectedGaners = '';
 ?>
 <div class="container">
     <form enctype="multipart/form-data" action="/components/form/add_actor.php" method="post">
@@ -45,6 +46,12 @@ $selected = '';
                     <label for="ganers">Выберите жанр</label>
                     <select name="ganers[]" multiple="" id="ganers-update">
                         <? foreach ($ganersList as $genre):?>
+                            <? foreach ($ganersListForActor as $ganerActor):?>
+                                <?
+                                if($genre['id'] == $ganerActor['ganer_id']):?>
+                                    <option selected <?($genre['id'])?> value="<?=$genre['id']?>"><?=$genre['name']?></option>
+                                    <?endif;?>
+                            <?endforeach;?>
                             <option <?($genre['id'])?> value="<?=$genre['id']?>"><?=$genre['name']?></option>
                         <? endforeach;?>
                     </select>
@@ -54,7 +61,15 @@ $selected = '';
                     <label for="impresario">Выберите импресарио</label>
                     <select name="impresario[]" multiple="" id="impresario-update">
                         <? foreach ($impresarioList as $impresario): ?>
-                            <option value="<?=$impresario['id']?>"><?=$impresario['PIB']?></option>
+                            <? foreach ($impresarioListForActor as $impresarioActor):?>
+                                <?
+                                if($impresario['id'] == $impresarioActor['impresario_id']){
+                                    $selectedImpresario = "selected";}
+                                else{
+                                    $selectedImpresario = '';}
+                                ?>
+                            <?endforeach;?>
+                            <option <?=$selectedImpresario?> value="<?=$impresario['id']?>"><?=$impresario['PIB']?></option>
                         <? endforeach;?>
                     </select>
                 </div>

@@ -64,6 +64,40 @@ class Actors
         return $genresList;
     }
 
+    /**
+     * @param $actor_id
+     * @return array|bool
+     */
+    public static function getListGenresForActorById($actor_id){
+        if(isset($actor_id)){
+            $actor_id = intval($actor_id);
+            $db = Db::getConnection();
+            $query = $db->prepare("SELECT * FROM actor_ganer WHERE actor_id = :actor_id");
+            $query->bindParam(":actor_id", $actor_id, PDO::PARAM_INT);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            return $query->fetchAll();
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static function getListImpresarioForActorById($actor_id){
+        if(isset($actor_id)){
+            $actor_id = intval($actor_id);
+            $db = Db::getConnection();
+            $query = $db->prepare("SELECT * FROM actor_impresario WHERE actor_id = :actor_id");
+            $query->bindParam(":actor_id", $actor_id, PDO::PARAM_INT);
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute();
+            return $query->fetchAll();
+        }
+        else{
+            return false;
+        }
+    }
+
     public static function getListImpresario(){
         $impresarioList = [];
         $db = Db::getConnection();
@@ -108,6 +142,33 @@ class Actors
             $query_relation_impres->execute();
         }
     }
+
+    public static function updateActor($actor_id, $firstName, $lastName, $patronymic, $impresarioList, $birth_date, $genreList, $grade, $image_title){
+        $db = Db::getConnection();
+        $query = $db->prepare("UPDATE  actors  SET  first_name = :firstName, last_name =:lastName, patronomic =:patronymic, grade =:grade, birth_date =:birth_date, image_title =:image_title, WHERE id = :actor_id");
+        $query->bindParam(':firstName', $firstName, PDO::PARAM_STR);
+        $query->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+        $query->bindParam(':patronymic', $patronymic, PDO::PARAM_STR);
+        $query->bindParam(':birth_date', $birth_date, PDO::PARAM_STR);
+        $query->bindParam(':grade', $grade, PDO::PARAM_STR);
+        $query->bindParam(':image_title', $image_title, PDO::PARAM_STR);
+        $query->bindParam(':actor_id', $actor_id, PDO::PARAM_INT);
+        $query->execute();
+        $last_id = $db->lastInsertId();
+        foreach ($genreList as $ganre){
+            $query_relation = $db->prepare("INSERT INTO actor_ganer (actor_id, ganer_id) VALUES (:actor_id, :ganer_id)");
+            $query_relation->bindParam(':actor_id', $last_id, PDO::PARAM_INT);
+            $query_relation->bindParam(':ganer_id', $ganre, PDO::PARAM_INT);
+            $query_relation->execute();
+        }
+        foreach ($impresarioList as $impresario){
+            $query_relation_impres = $db->prepare("INSERT INTO actor_impresario (actor_id, impresario_id) VALUES (:actor_id, :impresario_id)");
+            $query_relation_impres->bindParam(':actor_id', $last_id, PDO::PARAM_INT);
+            $query_relation_impres->bindParam(':impresario_id', $impresario, PDO::PARAM_INT);
+            $query_relation_impres->execute();
+        }
+    }
+
     public static function unsetActor($id){
         $db = Db::getConnection();
         $query = $db->prepare("DELETE FROM actors WHERE actors.id = :id; DELETE FROM actor_ganer WHERE actor_id = :id; DELETE FROM `actor_impresario` WHERE actor_id = :id");

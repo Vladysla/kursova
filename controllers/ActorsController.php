@@ -8,19 +8,6 @@
 
 class ActorsController
 {
-    /**
-     * @param $ganer_id
-     */
-    public function actionGaners($ganer_id){
-        $actorsListForGaners = Actors::getListForGaners($ganer_id);
-        if ($actorsListForGaners == ''){
-            echo "<h1>Актеров не найдено</h1>";
-        }
-        print_r($actorsListForGaners);
-        $title = "Актеры";
-        require_once(ROOT . '/views/actors/ganers.php');
-    }
-
     public function actionListActors(){
         $title = "Список актеров";
         $actorsList = Actors::getListActors();
@@ -33,6 +20,8 @@ class ActorsController
         $ganersList = Actors::getListGenres();
         $impresarioList = Actors::getListImpresario();
         $actor = Actors::getActor($actor_id);
+        $ganersListForActor = Actors::getListGenresForActorById($actor_id);
+        $impresarioListForActor = Actors::getListImpresarioForActorById($actor_id);
         require_once(ROOT . '/views/actors/updateActor.php');
     }
 
