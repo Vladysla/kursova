@@ -8,8 +8,11 @@
 
 class CulturalBuilding
 {
-    public static function getListBuildings(){
-
+    public static function getListBuildings()
+    {
+        $db = Db::getConnection();
+        $listBuildings = $db->query("SELECT * FROM cultural_buildings");
+        return $listBuildings->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

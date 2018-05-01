@@ -36,7 +36,7 @@ a:focus{
 }
 /*===========================  List Actors  =============================*/
 
- .demo-card-square.mdl-card {
+ #card-actor {
 	 width: 300px;
 	 max-width: 320px;
 	 height: 450px;
@@ -45,11 +45,11 @@ a:focus{
 	color: #fff;
 	background-size: cover !important;
 }
-.mdl-card__actions.mdl-card--border > .mdl-card__menu{
+#actor-card__menu{
 	position: unset !important;
 	display: inline-block !important;
 }
-.mdl-card__actions.mdl-card--border{
+#actor-card__actions{
 	display: flex;
 	justify-content: space-between;
 }
@@ -115,4 +115,23 @@ a:focus{
 }
 .names{
 	color: blanchedalmond;
+}
+
+/*===========================  List Actors  =============================*/
+
+#card-buildings{
+	width: 600px;
+	max-width: 650px;
+}
+#building-btn{
+	position: absolute;
+	z-index: 99;
+	top: 65px;
+	right: 125px;
+}
+#building-actions-border {
+	border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+#building-main-card{
+	margin: 1% 0;
 }

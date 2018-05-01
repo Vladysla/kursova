@@ -38,7 +38,7 @@
                     <div class="row justify-content-between">
                         <? foreach ($actorsList as $list): ?>
                             <div class="col-lg-4 col-md-4 col-sm-5">
-                                <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                                <div id="card-actor" class="demo-card-square mdl-card mdl-shadow--2dp">
                                     <div class="mdl-card__title mdl-card--expand" style="background:
                                             url('../template/media/images/actors/<?=$list['image_title']?>') bottom right 15% no-repeat #f9f9f9;">
                                         <h2 class="mdl-card__title-text names"><?=$list['first_name'] . " " . $list['last_name']?></h2>
@@ -46,11 +46,11 @@
                                     <div class="mdl-card__supporting-text">
                                         <?=$list['grade']?>
                                     </div>
-                                    <div class="mdl-card__actions mdl-card--border">
+                                    <div id="actor-card__actions" class="mdl-card__actions mdl-card--border">
                                         <a href="actor/<?=$list['id']?>" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                             Подробнее
                                         </a>
-                                        <div class="mdl-card__menu">
+                                        <div id="actor-card__menu" class="mdl-card__menu">
                                             <!-- Right aligned menu on top of button  -->
                                             <button id="demo-menu-top-right <?=$list['id']?>"
                                                     class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
