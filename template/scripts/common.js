@@ -96,5 +96,36 @@ $(document).ready(function () {
             }
         });
     });
+    // SELECT BUILDINGS BY TYPES
+    $("#building-cinema-types").hide();
+    $("#bld-type").change(function () {
+        if ($("#building-type").val() === "cinema"){
+            $("#building-cinema-types").show();
+        }else {
+            $("#building-cinema-types").hide();
+        }
+    });
+    $("#bld-screen, #bld-holes, #bld-image").change(function () {
+        var $type = $("#building-type").val();
+        var $size = $("#building-screen").val();
+        var $holes = $("#building-holes").val();
+        var $3d = $("#building-image").val();
+        $.ajax({
+            url: "../../components/ajax/building_pick.php",
+            method: "post",
+            data: {screen_size:$size, bld_type: $type, bld_holes: $holes, support_3d: $3d},
+            dataType: "text",
+            beforeSend: function() {
+                $('.buildings-by-types-list').html('');
+                $('.mdl-spinner').addClass('is-active');
+            },
+            complete: function() {
+                $('.mdl-spinner').removeClass('is-active');
+            },
+            success: function (data) {
+                $(".buildings-by-types-list").append(data)
+            }
+        });
+    })
 });
 

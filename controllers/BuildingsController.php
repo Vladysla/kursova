@@ -11,6 +11,8 @@ class BuildingsController
     public function actionListBuildings(){
         $title = "Культурные сооружения";
         $listBuildings = CulturalBuilding::getListBuildings();
+        $listScreenSizes = CulturalBuilding::getListScreenSize();
+        $listNumberOfHoles = CulturalBuilding::getListNumberOfHoles();
         require_once(ROOT . '/views/buildings/index.php');
     }
 

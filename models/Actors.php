@@ -8,6 +8,10 @@
 
 class Actors
 {
+    /**
+     * @param $ganer_id
+     * @return array
+     */
     public static function getListForGaners($ganer_id){
         $ganer_id = intval($ganer_id);
         if($ganer_id){
@@ -25,6 +29,10 @@ class Actors
         }
     }
 
+    /**
+     * @param $impresario_id
+     * @return array
+     */
     public static function getListForImpresario($impresario_id){
         $impresario_id = intval($impresario_id);
         if($impresario_id){
@@ -42,6 +50,9 @@ class Actors
         }
     }
 
+    /**
+     * @return array
+     */
     public static function getListActors(){
         $actorsList = [];
         $db = Db::getConnection();
@@ -55,6 +66,9 @@ class Actors
         return $actorsList;
     }
 
+    /**
+     * @return array
+     */
     public static function getListGenres(){
         $genresList = [];
         $db = Db::getConnection();
@@ -83,6 +97,10 @@ class Actors
         }
     }
 
+    /**
+     * @param $actor_id
+     * @return array|bool
+     */
     public static function getListImpresarioForActorById($actor_id){
         if(isset($actor_id)){
             $actor_id = intval($actor_id);
@@ -98,6 +116,9 @@ class Actors
         }
     }
 
+    /**
+     * @return array
+     */
     public static function getListImpresario(){
         $impresarioList = [];
         $db = Db::getConnection();
@@ -107,6 +128,10 @@ class Actors
         return $impresarioList;
     }
 
+    /**
+     * @param $actor_id
+     * @return mixed
+     */
     public static function getActor($actor_id)
     {
         $actor_id = intval($actor_id);
@@ -118,6 +143,16 @@ class Actors
         return $query->fetch();
     }
 
+    /**
+     * @param $firstName
+     * @param $lastName
+     * @param $patronymic
+     * @param $impresarioList
+     * @param $birth_date
+     * @param $genreList
+     * @param $grade
+     * @param $image_title
+     */
     public static function setNewActor($firstName, $lastName, $patronymic, $impresarioList, $birth_date, $genreList, $grade, $image_title){
         $db = Db::getConnection();
         $query = $db->prepare("INSERT INTO actors (first_name, last_name, patronomic, birth_date, grade, image_title) VALUES (:firstName, :lastName, :patronymic, :birth_date, :grade, :image_title)");
@@ -143,6 +178,17 @@ class Actors
         }
     }
 
+    /**
+     * @param $actor_id
+     * @param $firstName
+     * @param $lastName
+     * @param $patronymic
+     * @param $impresarioList
+     * @param $birth_date
+     * @param $genreList
+     * @param $grade
+     * @param $image_title
+     */
     public static function updateActor($actor_id, $firstName, $lastName, $patronymic, $impresarioList, $birth_date, $genreList, $grade, $image_title){
         $db = Db::getConnection();
         $query = $db->prepare("UPDATE  actors  SET  first_name = :firstName, last_name =:lastName, patronomic =:patronymic, grade =:grade, birth_date =:birth_date, image_title =:image_title WHERE id = :actor_id");
@@ -171,6 +217,9 @@ class Actors
         }
     }
 
+    /**
+     * @param $id
+     */
     public static function unsetActor($id){
         $db = Db::getConnection();
         $query = $db->prepare("DELETE FROM actors WHERE actors.id = :id; DELETE FROM actor_ganer WHERE actor_id = :id; DELETE FROM `actor_impresario` WHERE actor_id = :id");
