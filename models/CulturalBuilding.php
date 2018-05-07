@@ -12,9 +12,7 @@ class CulturalBuilding
     {
         $db = Db::getConnection();
         $listBuildings = $db->query("SELECT * FROM cultural_buildings");
-        $listBuildings->execute();
-        $listBuildings->fetchAll(PDO::FETCH_ASSOC);
-        return $listBuildings;
+        return $listBuildings->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

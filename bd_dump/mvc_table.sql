@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 26 2018 г., 16:04
+-- Время создания: Май 07 2018 г., 15:27
 -- Версия сервера: 5.7.16
 -- Версия PHP: 7.1.0
 
@@ -69,17 +69,16 @@ INSERT INTO `actor_ganer` (`actor_id`, `ganer_id`) VALUES
 (1, 4),
 (1, 6),
 (1, 9),
-(2, 2),
-(2, 3),
-(2, 4),
-(2, 8),
-(2, 9),
-(2, 10),
 (3, 3),
 (3, 7),
 (3, 8),
 (13, 3),
-(13, 4);
+(13, 4),
+(2, 3),
+(2, 4),
+(2, 8),
+(2, 9),
+(2, 10);
 
 -- --------------------------------------------------------
 
@@ -99,7 +98,8 @@ CREATE TABLE `actor_impresario` (
 INSERT INTO `actor_impresario` (`actor_id`, `impresario_id`) VALUES
 (13, 3),
 (13, 4),
-(13, 5);
+(13, 5),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -114,8 +114,17 @@ CREATE TABLE `cinema` (
   `screen_size` float NOT NULL,
   `number_of_halls` int(2) NOT NULL,
   `support_3d` tinyint(1) NOT NULL,
+  `title_img` varchar(255) NOT NULL,
+  `discription` text NOT NULL,
   `location` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `cinema`
+--
+
+INSERT INTO `cinema` (`id`, `name_cinema`, `capacity`, `screen_size`, `number_of_halls`, `support_3d`, `title_img`, `discription`, `location`) VALUES
+(1, 'Черновцы', 464, 150, 2, 0, 'cinema_chernivcy.jpg', ' История здания, в котором находится кинотеатр “Черновцы”, берет начало в далеком 1877 году, когда еврейской части населения города передали это сооружение для молитв. Автором архитектуры стал профессор Юлиан Захаревич. В 40-х годах синагогу неоднократно пытались сравнять с землей, однако храм остался стоять, пусть и наполовину разрушенным. Сооружение вернули к жизни в 1959 году, когда выстроив храм обратно, превратили его кинотеатр “Жовтень”. В прошлом синагога и одна из главных достопримечательностей города, в наше время радует зрителей очаровательных Черновцов самым большим залом в городе и демократичными ценами на билеты.', 'г.Черновцы, ул. Университетская, 10');
 
 -- --------------------------------------------------------
 
@@ -140,8 +149,26 @@ CREATE TABLE `concert_events` (
 
 CREATE TABLE `cultural_buildings` (
   `id` int(11) NOT NULL,
-  `type_of_buiiding` varchar(255) NOT NULL
+  `type_of_building` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `capacity` int(4) NOT NULL,
+  `screen_size` float DEFAULT NULL,
+  `number_of_halls` int(2) NOT NULL DEFAULT '1',
+  `support_3d` tinyint(1) DEFAULT NULL,
+  `title_img` varchar(255) DEFAULT NULL,
+  `discription` text,
+  `scena` text,
+  `lighting` varchar(255) DEFAULT NULL,
+  `sound` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `cultural_buildings`
+--
+
+INSERT INTO `cultural_buildings` (`id`, `type_of_building`, `name`, `capacity`, `screen_size`, `number_of_halls`, `support_3d`, `title_img`, `discription`, `scena`, `lighting`, `sound`, `location`) VALUES
+(1, 'cinema', 'Черновцы', 464, 150, 2, 0, 'cinema_chernivcy.jpg', 'История здания, в котором находится кинотеатр “Черновцы”, берет начало в далеком 1877 году, когда еврейской части населения города передали это сооружение для молитв. Автором архитектуры стал профессор Юлиан Захаревич. В 40-х годах синагогу неоднократно пытались сравнять с землей, однако храм остался стоять, пусть и наполовину разрушенным. Сооружение вернули к жизни в 1959 году, когда выстроив храм обратно, превратили его кинотеатр “Жовтень”. В прошлом синагога и одна из главных достопримечательностей города, в наше время радует зрителей очаровательных Черновцов самым большим залом в городе и демократичными ценами на билеты.', '', '', '', 'г.Черновцы, ул. Университетская, 10');
 
 -- --------------------------------------------------------
 
@@ -283,7 +310,7 @@ ALTER TABLE `actors`
 -- AUTO_INCREMENT для таблицы `cinema`
 --
 ALTER TABLE `cinema`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `concert_events`
 --
@@ -293,7 +320,7 @@ ALTER TABLE `concert_events`
 -- AUTO_INCREMENT для таблицы `cultural_buildings`
 --
 ALTER TABLE `cultural_buildings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `ganers`
 --
