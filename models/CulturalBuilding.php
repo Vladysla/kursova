@@ -24,7 +24,7 @@ class CulturalBuilding
     public static function getListScreenSize()
     {
         $db = Db::getConnection();
-        $listBuildings = $db->query("SELECT screen_size FROM cultural_buildings");
+        $listBuildings = $db->query("SELECT DISTINCT screen_size FROM cultural_buildings");
         return $listBuildings->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -34,7 +34,7 @@ class CulturalBuilding
     public static function getListNumberOfHoles()
     {
         $db = Db::getConnection();
-        $listBuildings = $db->query("SELECT number_of_halls FROM cultural_buildings");
+        $listBuildings = $db->query("SELECT DISTINCT number_of_halls FROM cultural_buildings");
         return $listBuildings->fetchAll(PDO::FETCH_ASSOC);
     }
 
