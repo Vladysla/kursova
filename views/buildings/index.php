@@ -18,6 +18,16 @@
                             $descripton = substr($descripton, 0, strrpos($descripton, ' '));
                             ?>
                             <div id="building-main-card" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+                                <!-- Large Tooltip add button -->
+                                <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--top" for="btn-add-some">
+                                    Добавить сооружение
+                                </div>
+                                <div class="mdl-button--floating-action">
+                                    <!-- Colored FAB button with ripple -->
+                                    <button id="btn-add-some" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                                        <i class="material-icons">add</i>
+                                    </button>
+                                </div>
                                 <div id="building-card-content" class="mdl-card mdl-cell mdl-cell--12-col" style="background-image: url('../template/media/images/cultural/<?= $list['title_img'] ?>');">
                                     <div id="building-support-text" class="mdl-card__supporting-text">
                                         <h4><?
@@ -37,13 +47,14 @@
                                     </div>
                                 </div>
                                 <div class="mdl-card__menu">
-                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon building-btn">
+                                    <button id="demo-menu-buttom-right <?=$list['id']?>" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon building-btn">
                                         <i class="material-icons">more_vert</i>
                                     </button>
-                                    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="building-btn">
-                                        <li id-actor="<?=$list['id']?>" class="mdl-menu__item edit-actor"><a
-                                                    href="/actors/update/<?=$list['id']?>">Редактировать даные</a></li>
-                                        <li id-actor="<?=$list['id']?>" class="mdl-menu__item delete-actor">Удалить из списка</li>
+                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                        data-mdl-for="demo-menu-buttom-right <?=$list['id']?>">
+                                        <li id-building="<?=$list['id']?>" class="mdl-menu__item edit-building"><a
+                                                    href="/building/update/<?=$list['id']?>">Редактировать даные</a></li>
+                                        <li id-building="<?=$list['id']?>" class="mdl-menu__item delete-building">Удалить из списка</li>
                                     </ul>
                                 </div>
                             </div>
@@ -121,6 +132,62 @@
                         <li>Daenerys</li>
                     </ul>
                 </div>
+                <!----- Dialog ---->
+                <dialog id="dialog-add-building" class="mdl-dialog">
+                    <form enctype="multipart/form-data" action="/components/form/add_actor.php" method="post">
+                        <h4 class="mdl-dialog__title">Добавление актера</h4>
+                        <div class="mdl-dialog__content">
+                            <!-- Numeric Textfield with Floating Label -->
+                            <div id="field-name" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input name="first_name" class="mdl-textfield__input" type="text" pattern="[а-яА-Я,і]+" id="name">
+                                <label class="mdl-textfield__label" for="name">Имя</label>
+                                <span class="mdl-textfield__error">В поле имя не должно быть цифр</span>
+                            </div>
+                            <div id="field-name-last" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input name="last_name" class="mdl-textfield__input" type="text" pattern="[а-яА-Я,і]+" id="last-name">
+                                <label class="mdl-textfield__label" for="last-name">Фамилия</label>
+                                <span class="mdl-textfield__error">В поле фамилия не должно быть цифр</span>
+                            </div>
+                            <div id="field-name-patr" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input name="patronymic" class="mdl-textfield__input" type="text" pattern="[а-яА-Я,і]+" id="patronymic">
+                                <label class="mdl-textfield__label" for="patronymic">Отчество</label>
+                                <span class="mdl-textfield__error">В поле отчество не должно быть цифр</span>
+                            </div>
+                            <div id="field-date" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input name="date" class="mdl-textfield__input" type="text" pattern="(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d" id="date">
+                                <label class="mdl-textfield__label" for="date">Дата рождения</label>
+                                <span class="mdl-textfield__error">Дата рождения должна быть в формате DD/MM/YYYY</span>
+                            </div>
+                            <div id="field-grade" class="mdl-textfield mdl-js-textfield">
+                                <textarea name="grade" class="mdl-textfield__input" type="text" rows= "10" id="grade" ></textarea>
+                                <label class="mdl-textfield__label" for="grade">Должность, заслуги</label>
+                            </div>
+                            <label for="ganers">Выберите жанр</label>
+                            <select name="ganers[]" multiple="" id="ganers">
+                                <? foreach ($ganersList as $genre): ?>
+                                    <option value="<?=$genre['id']?>"><?=$genre['name']?></option>
+                                <? endforeach;?>
+                            </select>
+                            <!-- Select with floating label -->
+                            <label for="impresario">Выберите импресарио</label>
+                            <select name="impresario[]" multiple="" id="impresario">
+                                <? foreach ($impresarioList as $impresario): ?>
+                                    <option value="<?=$impresario['id']?>"><?=$impresario['PIB']?></option>
+                                <? endforeach;?>
+                            </select>
+                            <br><br>
+                            Отправить этот файл:
+                            <input name="actor_image" type="file" />
+                        </div>
+                        <div class="mdl-dialog__actions">
+                            <!-- Raised button with ripple -->
+                            <button type="button" id="btn-not-add-actor"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect close">
+                                Отменить
+                            </button>
+                            <input value="Добавить" type="submit" name="submit" id="btn-add-actor"  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        </div>
+                    </form>
+                </dialog>
             </div>
         </div>
     </div>

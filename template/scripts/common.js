@@ -96,6 +96,10 @@ $(document).ready(function () {
             }
         });
     });
+    //=======  BUILDINGS  ============//
+    $("#all-buildings").on('click', 'button', function () {
+        $(this).siblings().toggleClass('is-visible');
+    });
     // SELECT BUILDINGS BY TYPES
     $("#building-cinema-types").hide();
     $("#bld-type").change(function () {
