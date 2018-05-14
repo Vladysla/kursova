@@ -55,19 +55,19 @@ $(document).ready(function () {
         $(this).siblings().toggleClass('is-visible');
     });
     // Dialog
-    var dialog = document.querySelector('dialog');
-    if(dialog){
-        var showDialogButton = document.querySelector('#btn-add-some');
-        if (! dialog.showModal) {
-            dialogPolyfill.registerDialog(dialog);
+        var dialog = document.querySelector('dialog');
+        if(dialog){
+            var showDialogButton = document.getElementById('btn-add-some');
+            if (! dialog.showModal) {
+                dialogPolyfill.registerDialog(dialog);
+            }
+            $(document).on('click', "button#btn-add-some", function () {
+                dialog.showModal();
+            });
+            dialog.querySelector('.close').addEventListener('click', function() {
+                dialog.close();
+            });
         }
-        showDialogButton.addEventListener('click', function() {
-            dialog.showModal();
-        });
-        dialog.querySelector('.close').addEventListener('click', function() {
-            dialog.close();
-        });
-    }
     $('#ganers:not(.normal)').each(function () {
         $(this).select2({
             dropdownParent: $(this).parent()

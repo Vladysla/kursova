@@ -19,7 +19,7 @@
                             ?>
                             <div id="building-main-card" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
                                 <!-- Large Tooltip add button -->
-                                <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--top" for="btn-add-some">
+                                <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--top" for="btn-add-some-building">
                                     Добавить сооружение
                                 </div>
                                 <div class="mdl-button--floating-action">
@@ -133,7 +133,7 @@
                     </ul>
                 </div>
                 <!----- Dialog ---->
-                <dialog id="dialog-add-building" class="mdl-dialog">
+                <dialog id="dialog2" class="mdl-dialog">
                     <form enctype="multipart/form-data" action="/components/form/add_actor.php" method="post">
                         <h4 class="mdl-dialog__title">Добавление актера</h4>
                         <div class="mdl-dialog__content">
